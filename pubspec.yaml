@@ -13,6 +13,13 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # TAT Core implementations.
+  # Use https login with github personal access key at the first time to obtain this sub-package.
+  tat_core:
+    git:
+      url: git@github.com:Xanonymous-GitHub/TAT-Core.git
+      ref: main
+
   # Bloc for implement the Bloc design pattern.
   bloc: ^8.0.0-dev.4
   flutter_bloc: ^8.0.0-dev.2
