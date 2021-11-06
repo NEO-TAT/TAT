@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^1.0.4
+  flutter_launcher_icons: ^0.9.2
 
   # Bloc
   bloc_test: ^9.0.0-dev.4
@@ -39,6 +40,11 @@ module:
 
 flutter:
   uses-material-design: true
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/tat.png"
 
   # To add assets to your application, add an assets section, like this:
   # assets:
