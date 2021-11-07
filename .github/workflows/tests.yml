@@ -16,18 +16,34 @@ jobs:
         
     steps:
     # Set up Flutter.
-    - name: Clone Flutter repository with master channel
+    - name: Clone Flutter repository with stable channel
       uses: subosito/flutter-action@v1
       with:
         channel: stable
         
     - run: flutter doctor -v
 
-    # Checkout gallery code and get packages.
-    - name: Checkout gallery code
+    # Checkout code
+    - name: Checkout codebase
       uses: actions/checkout@v2
-      
-    - run: flutter pub get
+
+    # install ssh key
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+    # Add github token
+    - name: Add Github Token
+      uses: oleksiyrudenko/gha-git-credentials@v2
+      with:
+        token: '${{ secrets.TAT_CORE_ACCESS_TOKEN }}'
+        email: '${{ secrets.EMAIL }}'
+
+    # Get packages.
+    - name: Get dependencies
+      run: flutter pub get
 
     # Analyze, check formatting, and run unit tests.
     - run: flutter analyze

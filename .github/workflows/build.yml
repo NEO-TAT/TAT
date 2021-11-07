@@ -18,17 +18,31 @@ jobs:
         
     steps:
     
-    # checkout codebase.
-    - name: Checkout codebase
-      uses: actions/checkout@v2
-    
     # Set up Flutter.
     - name: Clone Flutter repository with stable channel
       uses: subosito/flutter-action@v1
       with:
         channel: stable
 
-    # Checkout gallery code and get packages.
+    # checkout codebase.
+    - name: Checkout codebase
+      uses: actions/checkout@v2
+
+    # install ssh key
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+    # Add github token
+    - name: Add Github Token
+      uses: oleksiyrudenko/gha-git-credentials@v2
+      with:
+        token: '${{ secrets.TAT_CORE_ACCESS_TOKEN }}'
+        email: '${{ secrets.EMAIL }}'
+
+    # Get packages.
     - name: Get dependencies
       run: flutter pub get
     
@@ -47,10 +61,6 @@ jobs:
         
     steps:
     
-    # checkout codebase.
-    - name: Checkout codebase
-      uses: actions/checkout@v2
-    
     # Set up Java.
     - name: Setup JDK 17
       uses: actions/setup-java@v2
@@ -62,6 +72,24 @@ jobs:
       uses: subosito/flutter-action@v1
       with:
         channel: stable
+
+    # checkout codebase.
+    - name: Checkout codebase
+      uses: actions/checkout@v2
+
+    # install ssh key
+    - name: Install SSH Key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_KEY }}
+        known_hosts: ${{ secrets.KNOWN_HOSTS }}
+
+    # Add github token
+    - name: Add Github Token
+      uses: oleksiyrudenko/gha-git-credentials@v2
+      with:
+        token: '${{ secrets.TAT_CORE_ACCESS_TOKEN }}'
+        email: '${{ secrets.EMAIL }}'
 
     # Get packages.
     - name: Get dependencies
