@@ -6,8 +6,8 @@ publish_to: 'none'
 version: 2.0.0+1
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
-  flutter: ">=2.8.0"
+  sdk: ">=2.15.1 <3.0.0"
+  flutter: ">=2.8.1"
 
 dependencies:
 
@@ -29,8 +29,9 @@ dependencies:
   bloc_concurrency: ^0.2.0
   replay_bloc: ^0.2.1
 
-  # Get
-  get: ^4.6.1
+  # Providers (riverPod + hooks) for Dependencies Injection and State Management.
+  flutter_hooks: ^0.18.1
+  hooks_riverpod: ^1.0.3
 
 dev_dependencies:
   flutter_test:
