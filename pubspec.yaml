@@ -22,15 +22,15 @@ dependencies:
       ref: main
 
   # Bloc for implement the Bloc design pattern.
-  bloc: ^8.0.1
-  flutter_bloc: ^8.0.0
+  bloc: ^8.0.2
+  flutter_bloc: ^8.0.1
   hydrated_bloc: ^8.0.0
   sealed_flutter_bloc: ^8.0.0
   bloc_concurrency: ^0.2.0
   replay_bloc: ^0.2.1
 
   # Providers (riverPod + hooks) for Dependencies Injection and State Management.
-  flutter_hooks: ^0.18.1
+  flutter_hooks: ^0.18.2
   hooks_riverpod: ^1.0.3
 
 dev_dependencies:
@@ -44,7 +44,7 @@ dev_dependencies:
   flutter_native_splash: ^1.3.2
 
   # Bloc
-  bloc_test: ^9.0.1
+  bloc_test: ^9.0.2
   bloc_tools: ^0.1.0-dev.4
 
 module:
