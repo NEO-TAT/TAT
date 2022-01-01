@@ -22,8 +22,8 @@ dependencies:
       ref: main
 
   # Bloc for implement the Bloc design pattern.
-  flutter_bloc: ^8.0.1
   hydrated_bloc: ^8.0.0
+  flutter_bloc: ^8.0.1
   sealed_flutter_bloc: ^8.0.0
   bloc_concurrency: ^0.2.0
   replay_bloc: ^0.2.1
@@ -36,7 +36,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^1.0.4
+  very_good_analysis: ^2.4.0
 
   # App configurations
   flutter_launcher_icons: ^0.9.2
@@ -45,6 +45,8 @@ dev_dependencies:
   # Bloc
   bloc_test: ^9.0.2
   bloc_tools: ^0.1.0-dev.4
+
+  import_sorter: ^4.6.0
 
 module:
   androidX: true
@@ -81,3 +83,7 @@ flutter_native_splash:
   ios_content_mode: center
 
   fullscreen: true
+
+import_sorter:
+  emojis: true
+  comments: true
