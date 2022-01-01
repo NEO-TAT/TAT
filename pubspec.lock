@@ -588,10 +588,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3059c0181bb8ae369f13dcd23b395a2832ff8286"
+      resolved-ref: "6110215673082a6c32290ade517eaa5da27ecf81"
       url: "git@github.com:Xanonymous-GitHub/TAT-Core.git"
     source: git
-    version: "0.0.1"
+    version: "1.0.0-1.0.pre"
   term_glyph:
     dependency: transitive
     description:
