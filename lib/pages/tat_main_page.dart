@@ -65,12 +65,10 @@ class TATMainPage extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: _tatPageView,
-      bottomNavigationBar: _tatButtonBar,
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        body: _tatPageView,
+        bottomNavigationBar: _tatButtonBar,
+      );
 }
 
 enum _TabType {

@@ -12,12 +12,10 @@ class CourseTablePage extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _appBar,
-      body: SafeArea(
-        child: Container(),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => Scaffold(
+        appBar: _appBar,
+        body: SafeArea(
+          child: Container(),
+        ),
+      );
 }
