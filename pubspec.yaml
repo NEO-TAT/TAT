@@ -22,7 +22,6 @@ dependencies:
       ref: main
 
   # Bloc for implement the Bloc design pattern.
-  bloc: ^8.0.2
   flutter_bloc: ^8.0.1
   hydrated_bloc: ^8.0.0
   sealed_flutter_bloc: ^8.0.0
