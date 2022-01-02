@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
 
   String? _userNameValidator(String? userName) {
     _log('$userName', areaName: 'userNameValidator');
-    return userName != null && userName.isNotEmpty ? null : Strings.userNameIsEmptyErrMsg;
+    return userName != null && userName.trim().isNotEmpty ? null : Strings.userNameIsEmptyErrMsg;
   }
 
   String? _passwordValidator(String? password) {
