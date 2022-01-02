@@ -22,6 +22,7 @@ class TATNavigator {
       case LoginPage.routeId:
         return MaterialPageRoute<LoginPage>(
           builder: (_) => const LoginPage(),
+          fullscreenDialog: true,
           settings: settings,
         );
       default:
