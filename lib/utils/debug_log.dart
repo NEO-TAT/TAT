@@ -23,10 +23,12 @@ void debugLog(
   Zone? zone,
   Object? error,
   StackTrace? stackTrace,
+  bool secure = false,
 }) {
   if (!kDebugMode) return;
+  final msg = debugTarget.toString();
   log(
-    debugTarget.toString(),
+    secure ? _createSecureDebugMsg(msg) : msg,
     time: time,
     sequenceNumber: sequenceNumber,
     level: level.value,
@@ -35,4 +37,9 @@ void debugLog(
     error: error,
     stackTrace: stackTrace,
   );
+}
+
+String _createSecureDebugMsg(String originMsg) {
+  const maskChar = '*';
+  return '🔒 ${maskChar * originMsg.length}';
 }
