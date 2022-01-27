@@ -134,6 +134,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  cookie_jar:
+    dependency: transitive
+    description:
+      name: cookie_jar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   coverage:
     dependency: transitive
     description:
@@ -169,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.4"
+  dio_cookie_manager:
+    dependency: "direct main"
+    description:
+      name: dio_cookie_manager
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   equatable:
     dependency: transitive
     description:
@@ -642,7 +656,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "4c8585d22358f14c40a1f409b617366fad7059a3"
+      resolved-ref: "163f7fbaf82b7361ba1beebea1ee9cce29d9cae6"
       url: "git@github.com:Xanonymous-GitHub/TAT-Core.git"
     source: git
     version: "1.0.0-2.0.pre"

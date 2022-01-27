@@ -35,6 +35,9 @@ dependencies:
   # login page
   flutter_login: ^3.1.0
 
+  # Dio http client
+  dio_cookie_manager: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
