@@ -38,6 +38,10 @@ dependencies:
   # Dio http client
   dio_cookie_manager: ^2.0.0
 
+  # Storages
+  shared_preferences: ^2.0.12
+  flutter_secure_storage: ^5.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
