@@ -656,7 +656,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "163f7fbaf82b7361ba1beebea1ee9cce29d9cae6"
+      resolved-ref: "280a7f5f6756e235269eac31963650b6a008f793"
       url: "git@github.com:Xanonymous-GitHub/TAT-Core.git"
     source: git
     version: "1.0.0-2.0.pre"
