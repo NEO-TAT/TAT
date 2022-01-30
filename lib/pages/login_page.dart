@@ -43,8 +43,8 @@ class LoginPage extends ConsumerWidget {
         password: loginData.password,
       );
 
-  Future<String?>? _handleLoginCallBack(LoginData loginData, WidgetRef ref) {
-    final authBloc = ref.watch(authBlocProvider);
+  Future<String?>? _handleLoginCallBack(LoginData loginData, WidgetRef ref) async {
+    final authBloc = await ref.watch(authBlocProvider.future);
     final credential = _generateCredentialFrom(loginData);
     authBloc.add(AuthInitialLoginCalled(credential));
 
