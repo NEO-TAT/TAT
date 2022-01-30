@@ -86,10 +86,10 @@ class StorageManager {
     _log('key: $key', areaName: '_getSecureData');
 
     return _secureStorage.read(
-        key: key,
-        aOptions: _secureStorageAOSOptions,
-        iOptions: _secureStorageIOSOptions,
-      );
+      key: key,
+      aOptions: _secureStorageAOSOptions,
+      iOptions: _secureStorageIOSOptions,
+    );
   }
 
   Object? _getData<T>({required String key}) {
@@ -126,8 +126,6 @@ class StorageManager {
     bool isSecure = false,
   }) =>
       setData(key: key, value: null, isSecure: isSecure);
-
-
 }
 
 class StorageKeys {
