@@ -1,5 +1,8 @@
 // ignore_for_file: directives_ordering
 
+// 🎯 Dart imports:
+import 'dart:async';
+
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
@@ -19,7 +22,7 @@ import 'package:tat/utils/debug_log.dart';
 /// A function to be invoked after logged in successfully.
 typedef LoginSuccessAction = void Function();
 
-class LoginPage extends ConsumerWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({Key? key, LoginSuccessAction? loginSuccessAction})
       : _loginSuccessAction = loginSuccessAction,
         super(key: key);
@@ -43,29 +46,72 @@ class LoginPage extends ConsumerWidget {
         password: loginData.password,
       );
 
-  Future<String?>? _handleLoginCallBack(LoginData loginData, WidgetRef ref) async {
+  @override
+  ConsumerState<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends ConsumerState<LoginPage> {
+  StreamSubscription<AuthState>? authBlocStreamSubscription;
+  String? loginFailedMsg;
+  Completer? loginCompleter;
+
+  Future<String?>? _handleLoginCallBack(LoginData loginData) async {
     final authBloc = await ref.watch(authBlocProvider.future);
-    final credential = _generateCredentialFrom(loginData);
+    final credential = widget._generateCredentialFrom(loginData);
+
+    loginCompleter = Completer();
+    loginFailedMsg = Strings.unknownLoginFailedMsg;
+
     authBloc.add(AuthInitialLoginCalled(credential));
 
-    // TODO(TU): add bloc stream listener to know if login success.
-    // if login success
-    _loginSuccessAction?.call();
-    return null;
+    assert(loginCompleter != null, 'loginCompleter should not be null when _handleLoginCallBack called.');
+
+    await loginCompleter?.future;
+    return loginFailedMsg;
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) => FlutterLogin(
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+      final authBloc = await ref.watch(authBlocProvider.future);
+      authBlocStreamSubscription = authBloc.stream.listen((state) {
+        if (state is AuthInitialLoginSuccess) {
+          loginFailedMsg = null;
+          widget._loginSuccessAction?.call();
+          loginCompleter?.complete();
+        } else if (state is AuthInitialLoginFailure) {
+          loginFailedMsg = Strings.getLoginFailedMsgFrom(state.errorType);
+          loginCompleter?.complete();
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    authBlocStreamSubscription?.cancel();
+
+    if (!(loginCompleter?.isCompleted ?? true)) {
+      loginCompleter?.complete();
+    }
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => FlutterLogin(
         title: Strings.loginPageTitle,
         footer: Strings.loginPageFooter,
         logo: ImageAssets.tatLogoTransparentWhite,
-        onLogin: (loginData) => _handleLoginCallBack(loginData, ref),
+        onLogin: _handleLoginCallBack,
         onRecoverPassword: (_) => null,
         hideForgotPasswordButton: true,
         userType: LoginUserType.name,
         theme: TATThemes.loginPageTheme,
-        userValidator: _userNameValidator,
-        passwordValidator: _passwordValidator,
+        userValidator: widget._userNameValidator,
+        passwordValidator: widget._passwordValidator,
         messages: LoginMessages(
           userHint: Strings.loginBoxUserNameInputHint,
           passwordHint: Strings.loginBoxPasswordInputHint,
