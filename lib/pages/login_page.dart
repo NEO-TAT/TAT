@@ -63,6 +63,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     loginFailedMsg = Strings.unknownLoginFailedMsg;
 
     authBloc.add(AuthInitialLoginCalled(credential));
+    _log('authBloc event added: ${(AuthInitialLoginCalled).toString()}', areaName: '_handleLoginCallBack');
 
     assert(loginCompleter != null, 'loginCompleter should not be null when _handleLoginCallBack called.');
 
@@ -73,10 +74,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   @override
   void initState() {
     super.initState();
+    _log('on initState', areaName: (_LoginPageState).toString());
 
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
       final authBloc = await ref.watch(authBlocProvider.future);
       authBlocStreamSubscription = authBloc.stream.listen((state) {
+        _log('receive authBloc stream data: $state', areaName: 'initState');
         if (state is AuthInitialLoginSuccess) {
           loginFailedMsg = null;
           widget._loginSuccessAction?.call();
@@ -91,6 +94,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   void dispose() {
+    _log('on dispose', areaName: (_LoginPageState).toString());
+
     authBlocStreamSubscription?.cancel();
 
     if (!(loginCompleter?.isCompleted ?? true)) {

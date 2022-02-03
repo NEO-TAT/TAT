@@ -30,11 +30,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final loginResult = await _initialLogin(event.credential);
 
       if (loginResult.isSuccess) {
+        _log('login success.', areaName: (AuthInitialLoginCalled).toString());
         await _saveCredential(event.credential);
         emit(AuthInitialLoginSuccess());
         return;
       }
 
+      _log('login failed, reason: ${loginResult.resultType.name}', areaName: (AuthInitialLoginCalled).toString());
       emit(AuthInitialLoginFailure(loginResult.resultType));
     });
 

@@ -1,5 +1,5 @@
 // 📦 Package imports:
-import 'package:tat_core/core/portal/domain/simple_login_result.dart';
+import 'package:tat_core/tat_core.dart';
 
 class Strings {
   // commons
