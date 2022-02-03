@@ -12,6 +12,18 @@ class TATNavigator {
 
   Future<void> launchLoginPage() async => _navigator.pushNamed(LoginPage.routeId);
 
+  static Route _createLoginPageRoute(RouteSettings settings) {
+    final params = settings.arguments as LoginPageRouteParams?;
+    final loginPage = LoginPage(
+      loginSuccessAction: params?.loginSuccessAction,
+    );
+    return MaterialPageRoute<LoginPage>(
+      builder: (_) => loginPage,
+      fullscreenDialog: true,
+      settings: settings,
+    );
+  }
+
   static Route createRoute(RouteSettings settings) {
     switch (settings.name) {
       case TATMainPage.routeId:
@@ -20,11 +32,7 @@ class TATNavigator {
           settings: settings,
         );
       case LoginPage.routeId:
-        return MaterialPageRoute<LoginPage>(
-          builder: (_) => const LoginPage(),
-          fullscreenDialog: true,
-          settings: settings,
-        );
+        return _createLoginPageRoute(settings);
       default:
         return PageRouteBuilder(
           pageBuilder: (_, __, ___) => const SizedBox.shrink(),

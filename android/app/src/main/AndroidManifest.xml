@@ -2,7 +2,9 @@
     package="club.ntut.npc.tat.tat">
    <application
         android:label="TAT"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/launcher_icon"
+        android:allowBackup="false"
+        android:fullBackupContent="false">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

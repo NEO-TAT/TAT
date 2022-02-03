@@ -19,13 +19,13 @@ Future<void> runTAT() async {
 void _beginRunTAT() {
   runApp(
     const ProviderScope(
-      child: TAT(),
+      child: _TAT(),
     ),
   );
 }
 
-class TAT extends StatelessWidget {
-  const TAT({Key? key}) : super(key: key);
+class _TAT extends StatelessWidget {
+  const _TAT({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => MaterialApp(
