@@ -10,6 +10,7 @@ import 'package:tat_core/tat_core.dart';
 
 // 🌎 Project imports:
 import 'package:tat/data/storage_manager.dart';
+import 'package:tat/utils/debug_log.dart';
 
 part 'auth_event.dart';
 
@@ -23,11 +24,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _simpleLoginUseCase = simpleLoginUseCase,
         super(AuthLoading()) {
     on<AuthInitialLoginCalled>((event, emit) async {
-      emit(AuthLoading());
-      await _initialLogin(event.credential);
+      _log('bloc event triggered.', areaName: (AuthInitialLoginCalled).toString());
 
-      // TODO(TU): if success ...
-      await _saveCredential(event.credential);
+      emit(AuthLoading());
+      final loginResult = await _initialLogin(event.credential);
+
+      if (loginResult.isSuccess) {
+        await _saveCredential(event.credential);
+        emit(AuthInitialLoginSuccess());
+        return;
+      }
+
+      emit(AuthInitialLoginFailure(loginResult.resultType));
     });
 
     on<AuthLogoutCalled>((event, emit) {
@@ -38,12 +46,24 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final StorageManager _storage;
   final SimpleLoginUseCase _simpleLoginUseCase;
 
-  Future<void> _initialLogin(LoginCredential credential) async {
-    await _simpleLoginUseCase(credential: credential);
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    _log('Error in bloc', areaName: 'onError', error: error, stackTrace: stackTrace);
+    super.onError(error, stackTrace);
   }
+
+  Future<SimpleLoginResult> _initialLogin(LoginCredential credential) async =>
+      _simpleLoginUseCase(credential: credential);
 
   Future<void> _saveCredential(LoginCredential credential) async {
     await _storage.setData(key: StorageKeys.keyUserId, value: credential.userId);
     await _storage.setData(key: StorageKeys.keyPassword, value: credential.password, isSecure: true);
   }
 }
+
+void _log(Object object, {required String areaName, Object? error, StackTrace? stackTrace}) => debugLog(
+      object,
+      name: '${(AuthBloc).toString()} $areaName',
+      error: error,
+      stackTrace: stackTrace,
+    );

@@ -20,6 +20,10 @@ class AuthInitialLoginSuccess extends AuthState {
 }
 
 class AuthInitialLoginFailure extends AuthState {
+  const AuthInitialLoginFailure(this.errorType);
+
+  final SimpleLoginResultType errorType;
+
   @override
   List<Object?> get props => [];
 }
