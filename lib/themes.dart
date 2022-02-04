@@ -26,7 +26,6 @@ class TATThemes {
         primaryColor: tatBlue,
         primaryColorLight: tatBlue,
         primaryColorDark: tatDarkBlue,
-        primaryColorBrightness: Brightness.light,
         fontFamily: tatFontFamily,
       );
 
