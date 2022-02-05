@@ -12,7 +12,7 @@ class MyAccountPage extends ConsumerWidget {
   const MyAccountPage({Key? key}) : super(key: key);
 
   PreferredSizeWidget get _appBar => AppBar(
-        title: const Text(Strings.mainPageMyAccount),
+        title: const Text(Strings.mainPageMyAccountTabName),
       );
 
   @override
