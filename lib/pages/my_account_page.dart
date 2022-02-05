@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
-import 'package:tat/providers/providers.dart';
+import 'package:tat/router/navigations.dart';
 import 'package:tat/strings.dart';
 
 class MyAccountPage extends ConsumerWidget {
@@ -28,9 +28,7 @@ class MyAccountPage extends ConsumerWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8),
                         child: ElevatedButton(
-                          onPressed: () {
-                            ref.read(tatNavigatorProvider).launchLoginPage();
-                          },
+                          onPressed: () => launchLoginPage(context),
                           child: const Text('Login'),
                         ),
                       ),
