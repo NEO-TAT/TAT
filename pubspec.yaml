@@ -39,7 +39,7 @@ dependencies:
   dio_cookie_manager: ^2.0.0
 
   # Storages
-  shared_preferences: ^2.0.12
+  shared_preferences: ^2.0.13
   flutter_secure_storage: ^5.0.2
 
   # router
