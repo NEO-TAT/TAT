@@ -10,26 +10,10 @@ import 'package:tat/pages/my_account_page.dart';
 import 'package:tat/strings.dart';
 import 'package:tat/utils/debug_log.dart';
 
-class TATMainPage extends StatelessWidget {
-  TATMainPage({Key? key}) : super(key: key);
+class TATMainPage extends StatefulWidget {
+  const TATMainPage({Key? key}) : super(key: key);
 
-  static const routeId = 'main_page';
-
-  final PageController _pageController = PageController();
-  final _CurrentMainPageTabIndex _currentIndex = _CurrentMainPageTabIndex();
-
-  List<_TabInfo> get _tabList => [
-        _TabInfo.courseTable(),
-        _TabInfo.myAccount(),
-      ];
-
-  PageView get _tatPageView => PageView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        itemBuilder: (context, index) => _toTabPage(_tabList[index]),
-        itemCount: _tabList.length,
-        controller: _pageController,
-        onPageChanged: _currentIndex.changeIndex,
-      );
+  static const routeName = 'main_page';
 
   Widget _toTabPage(_TabInfo tabInfo) {
     switch (tabInfo.type) {
@@ -40,7 +24,29 @@ class TATMainPage extends StatelessWidget {
     }
   }
 
-  List<BottomNavigationBarItem> get _bottomBarItems => _tabList.map((tabInfo) {
+  List<_TabInfo> get _tabList => [
+        _TabInfo.courseTable(),
+        _TabInfo.myAccount(),
+      ];
+
+  @override
+  State<TATMainPage> createState() => _TATMainPageState();
+}
+
+class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClientMixin {
+  final PageController _pageController = PageController();
+
+  final _CurrentMainPageTabIndex _currentIndex = _CurrentMainPageTabIndex();
+
+  PageView get _tatPageView => PageView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) => widget._toTabPage(widget._tabList[index]),
+        itemCount: widget._tabList.length,
+        controller: _pageController,
+        onPageChanged: _currentIndex.changeIndex,
+      );
+
+  List<BottomNavigationBarItem> get _bottomBarItems => widget._tabList.map((tabInfo) {
         const iconSize = 28.0;
         return BottomNavigationBarItem(
           label: tabInfo.label,
@@ -65,10 +71,16 @@ class TATMainPage extends StatelessWidget {
       );
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: _tatPageView,
-        bottomNavigationBar: _tatButtonBar,
-      );
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return Scaffold(
+      body: _tatPageView,
+      bottomNavigationBar: _tatButtonBar,
+    );
+  }
 }
 
 enum _TabType {
@@ -119,5 +131,5 @@ class _CurrentMainPageTabIndex extends Cubit<int> {
 
 void _log(Object object, {String? areaName}) => debugLog(
       object,
-      name: areaName != null ? '${TATMainPage.routeId} $areaName' : TATMainPage.routeId,
+      name: areaName != null ? '${TATMainPage.routeName} $areaName' : TATMainPage.routeName,
     );

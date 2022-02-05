@@ -27,7 +27,7 @@ class LoginPage extends ConsumerStatefulWidget {
       : _loginSuccessAction = loginSuccessAction,
         super(key: key);
 
-  static const routeId = 'login_page';
+  static const routeName = 'login_page';
 
   final LoginSuccessAction? _loginSuccessAction;
 
@@ -127,11 +127,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 class LoginPageRouteParams {
   const LoginPageRouteParams({required this.loginSuccessAction});
 
-  final LoginSuccessAction loginSuccessAction;
+  final LoginSuccessAction? loginSuccessAction;
 }
 
 void _log(Object object, {String? areaName, bool? secure}) => debugLog(
       object,
       secure: secure ?? false,
-      name: areaName != null ? '${LoginPage.routeId} $areaName' : LoginPage.routeId,
+      name: areaName != null ? '${LoginPage.routeName} $areaName' : LoginPage.routeName,
     );
