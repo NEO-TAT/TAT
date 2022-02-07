@@ -8,11 +8,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:tat/router/navigations.dart';
 import 'package:tat/strings.dart';
 
-class MyAccountPage extends ConsumerWidget {
-  const MyAccountPage({Key? key}) : super(key: key);
+class DebugBoard extends ConsumerWidget {
+  const DebugBoard({Key? key}) : super(key: key);
 
   PreferredSizeWidget get _appBar => AppBar(
-        title: const Text(Strings.mainPageMyAccountTabName),
+        title: const Text(Strings.mainPageDebugBoardTabName),
       );
 
   @override
@@ -29,7 +29,7 @@ class MyAccountPage extends ConsumerWidget {
                         padding: const EdgeInsets.all(8),
                         child: ElevatedButton(
                           onPressed: () => launchLoginPage(context),
-                          child: const Text('Login'),
+                          child: const Text('Launch login page'),
                         ),
                       ),
                     ),

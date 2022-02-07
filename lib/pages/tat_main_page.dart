@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // 🌎 Project imports:
-import 'package:tat/pages/course_table_page.dart';
-import 'package:tat/pages/my_account_page.dart';
+import 'package:tat/pages/tab_pages/bulletin_page.dart';
+import 'package:tat/pages/tab_pages/calendar_page.dart';
+import 'package:tat/pages/tab_pages/course_table_page.dart';
+import 'package:tat/pages/tab_pages/debug_board.dart';
+import 'package:tat/pages/tab_pages/grades_page.dart';
+import 'package:tat/pages/tab_pages/my_account_page.dart';
 import 'package:tat/strings.dart';
 import 'package:tat/utils/debug_log.dart';
 
@@ -20,19 +24,15 @@ class TATMainPage extends StatefulWidget {
       case _TabType.courseTable:
         return const CourseTablePage();
       case _TabType.grades:
-        // TODO(TU): replace with GradesPage().
-        return const CourseTablePage();
+        return const GradesPage();
       case _TabType.bulletin:
-        // TODO(TU): replace with BulletinPage().
-        return const CourseTablePage();
+        return const BulletinPage();
       case _TabType.calendar:
-        // TODO(TU): replace with CalendarPage().
-        return const CourseTablePage();
+        return const CalendarPage();
       case _TabType.myAccount:
         return const MyAccountPage();
       case _TabType.debugBoard:
-        // TODO(TU): replace with DebugBoard().
-        return const MyAccountPage();
+        return const DebugBoard();
     }
   }
 
