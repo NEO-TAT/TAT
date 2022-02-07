@@ -9,7 +9,6 @@ import 'package:tat/pages/course_table_page.dart';
 import 'package:tat/pages/my_account_page.dart';
 import 'package:tat/strings.dart';
 import 'package:tat/utils/debug_log.dart';
-import 'package:tat/widgets/bottom_bar.dart';
 
 class TATMainPage extends StatefulWidget {
   const TATMainPage({Key? key}) : super(key: key);
@@ -63,9 +62,9 @@ class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClient
         onPageChanged: _currentIndex.changeIndex,
       );
 
-  List<SalomonBottomBarItem> get _bottomBarItems => widget._tabList.map((tabInfo) {
-        return SalomonBottomBarItem(
-          title: Text(tabInfo.label),
+  List<BottomNavigationBarItem> get _bottomBarItems => widget._tabList.map((tabInfo) {
+        return BottomNavigationBarItem(
+          label: tabInfo.label,
           icon: Icon(
             tabInfo.iconSelector.original,
           ),
@@ -77,7 +76,7 @@ class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClient
 
   Widget? get _tatButtonBar => BlocBuilder<_CurrentMainPageTabIndex, int>(
         bloc: _currentIndex,
-        builder: (_, currentIndex) => SalomonBottomBar(
+        builder: (_, currentIndex) => BottomNavigationBar(
           items: _bottomBarItems,
           currentIndex: currentIndex,
           onTap: (index) {
