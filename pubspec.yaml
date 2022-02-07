@@ -29,7 +29,7 @@ dependencies:
   replay_bloc: ^0.2.1
 
   # Providers (riverPod + hooks) for Dependencies Injection and State Management.
-  flutter_hooks: ^0.18.2
+  flutter_hooks: ^0.18.2+1
   hooks_riverpod: ^1.0.3
 
   # login page
@@ -53,7 +53,7 @@ dev_dependencies:
 
   # App configurations
   flutter_launcher_icons: ^0.9.2
-  flutter_native_splash: ^2.0.1+1
+  flutter_native_splash: ^2.0.2
 
   # Bloc
   bloc_test: ^9.0.2
