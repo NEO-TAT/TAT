@@ -5,8 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // 🌎 Project imports:
-import 'package:tat/pages/course_table_page.dart';
-import 'package:tat/pages/my_account_page.dart';
+import 'package:tat/pages/tab_pages/bulletin_page.dart';
+import 'package:tat/pages/tab_pages/calendar_page.dart';
+import 'package:tat/pages/tab_pages/course_table_page.dart';
+import 'package:tat/pages/tab_pages/debug_board.dart';
+import 'package:tat/pages/tab_pages/grades_page.dart';
+import 'package:tat/pages/tab_pages/my_account_page.dart';
 import 'package:tat/strings.dart';
 import 'package:tat/utils/debug_log.dart';
 
@@ -19,14 +23,26 @@ class TATMainPage extends StatefulWidget {
     switch (tabInfo.type) {
       case _TabType.courseTable:
         return const CourseTablePage();
+      case _TabType.grades:
+        return const GradesPage();
+      case _TabType.bulletin:
+        return const BulletinPage();
+      case _TabType.calendar:
+        return const CalendarPage();
       case _TabType.myAccount:
         return const MyAccountPage();
+      case _TabType.debugBoard:
+        return const DebugBoard();
     }
   }
 
   List<_TabInfo> get _tabList => [
         _TabInfo.courseTable(),
+        _TabInfo.grades(),
+        _TabInfo.bulletin(),
+        _TabInfo.calendar(),
         _TabInfo.myAccount(),
+        _TabInfo.debugBoard(),
       ];
 
   @override
@@ -47,16 +63,13 @@ class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClient
       );
 
   List<BottomNavigationBarItem> get _bottomBarItems => widget._tabList.map((tabInfo) {
-        const iconSize = 28.0;
         return BottomNavigationBarItem(
           label: tabInfo.label,
           icon: Icon(
             tabInfo.iconSelector.original,
-            size: iconSize,
           ),
           activeIcon: Icon(
             tabInfo.iconSelector.selected,
-            size: iconSize,
           ),
         );
       }).toList();
@@ -66,7 +79,11 @@ class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClient
         builder: (_, currentIndex) => BottomNavigationBar(
           items: _bottomBarItems,
           currentIndex: currentIndex,
-          onTap: _pageController.jumpToPage,
+          onTap: (index) {
+            if (_pageController.hasClients && _pageController.page != null) {
+              _pageController.jumpToPage(index);
+            }
+          },
         ),
       );
 
@@ -85,7 +102,11 @@ class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClient
 
 enum _TabType {
   courseTable,
+  grades,
+  bulletin,
+  calendar,
   myAccount,
+  debugBoard,
 }
 
 class _IconSelector {
@@ -98,18 +119,50 @@ class _IconSelector {
 class _TabInfo {
   _TabInfo.courseTable()
       : type = _TabType.courseTable,
-        label = Strings.mainPageCourseTable,
+        label = Strings.mainPageCourseTableTabName,
         iconSelector = const _IconSelector(
           original: Icons.access_time,
           selected: Icons.access_time_filled,
         );
 
+  _TabInfo.grades()
+      : type = _TabType.grades,
+        label = Strings.mainPageGradesTabName,
+        iconSelector = const _IconSelector(
+          original: Icons.book_outlined,
+          selected: Icons.book_rounded,
+        );
+
+  _TabInfo.bulletin()
+      : type = _TabType.bulletin,
+        label = Strings.mainPageBulletinTabName,
+        iconSelector = const _IconSelector(
+          original: Icons.article_outlined,
+          selected: Icons.article,
+        );
+
+  _TabInfo.calendar()
+      : type = _TabType.calendar,
+        label = Strings.mainPageCalendarTabName,
+        iconSelector = const _IconSelector(
+          original: Icons.today_outlined,
+          selected: Icons.today,
+        );
+
   _TabInfo.myAccount()
       : type = _TabType.myAccount,
-        label = Strings.mainPageMyAccount,
+        label = Strings.mainPageMyAccountTabName,
         iconSelector = const _IconSelector(
           original: Icons.account_circle_outlined,
           selected: Icons.account_circle,
+        );
+
+  _TabInfo.debugBoard()
+      : type = _TabType.debugBoard,
+        label = Strings.mainPageDebugBoardTabName,
+        iconSelector = const _IconSelector(
+          original: Icons.settings_applications_outlined,
+          selected: Icons.settings_applications,
         );
 
   final _IconSelector iconSelector;

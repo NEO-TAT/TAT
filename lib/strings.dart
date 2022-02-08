@@ -13,8 +13,12 @@ class Strings {
   static const appBarTitle = 'TAT - 北科生活 APP';
 
   // main page
-  static const mainPageCourseTable = '課表';
-  static const mainPageMyAccount = '帳戶';
+  static const mainPageCourseTableTabName = '課表';
+  static const mainPageGradesTabName = '成績';
+  static const mainPageBulletinTabName = '佈告欄';
+  static const mainPageCalendarTabName = '行事曆';
+  static const mainPageMyAccountTabName = '帳戶';
+  static const mainPageDebugBoardTabName = 'Debug';
 
   // login page
   static const loginPageTitle = 'Login to NTUT';

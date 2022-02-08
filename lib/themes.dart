@@ -10,6 +10,7 @@ class TATThemes {
   static const tatRed = Color(0xFFD92027);
   static const tatOrange = Color(0xFFFF9234);
   static const tatWhite = Colors.white;
+  static const tatBlack = Colors.black;
   static const tatDarkBlue = Color(0xFF0a1e48);
   static const tatDarkPurple = Color(0xFF120136);
   static const tatLightBlueGreen = Color(0xFF93FFD8);
@@ -27,6 +28,10 @@ class TATThemes {
         primaryColorLight: tatBlue,
         primaryColorDark: tatDarkBlue,
         fontFamily: tatFontFamily,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: tatBlue,
+          unselectedItemColor: tatBlack,
+        ),
       );
 
   static LoginTheme get loginPageTheme => LoginTheme(

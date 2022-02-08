@@ -250,7 +250,7 @@ packages:
       name: flutter_hooks
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.18.2"
+    version: "0.18.2+1"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -271,7 +271,7 @@ packages:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1+1"
+    version: "2.0.2"
   flutter_riverpod:
     dependency: transitive
     description:
@@ -846,7 +846,7 @@ packages:
       path: "."
       ref: main
       resolved-ref: aa20ae88cca8192badae814f03be340dcf68ce30
-      url: "git@github.com:Xanonymous-GitHub/TAT-Core.git"
+      url: "git@github.com:NTUT-NPC/TAT-Core.git"
     source: git
     version: "1.0.0-2.0.pre"
   term_glyph:
@@ -1002,7 +1002,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.10"
+    version: "2.3.11"
   xdg_directories:
     dependency: transitive
     description:
