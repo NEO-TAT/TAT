@@ -18,7 +18,7 @@ dependencies:
   # Use https login with github personal access key at the first time to obtain this sub-package.
   tat_core:
     git:
-      url: git@github.com:Xanonymous-GitHub/TAT-Core.git
+      url: git@github.com:NTUT-NPC/TAT-Core.git
       ref: main
 
   # Bloc for implement the Bloc design pattern.
