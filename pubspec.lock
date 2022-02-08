@@ -846,7 +846,7 @@ packages:
       path: "."
       ref: main
       resolved-ref: aa20ae88cca8192badae814f03be340dcf68ce30
-      url: "git@github.com:Xanonymous-GitHub/TAT-Core.git"
+      url: "git@github.com:NTUT-NPC/TAT-Core.git"
     source: git
     version: "1.0.0-2.0.pre"
   term_glyph:
