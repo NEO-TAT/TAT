@@ -30,7 +30,7 @@ class TATThemes {
         fontFamily: tatFontFamily,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: tatBlue,
-          unselectedItemColor: Colors.black,
+          unselectedItemColor: tatBlack,
         ),
       );
 
