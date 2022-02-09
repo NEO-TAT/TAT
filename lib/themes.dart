@@ -24,9 +24,8 @@ class TATThemes {
   static const tatFontFamily = 'TATFont';
 
   static ThemeData createAppThemeData(BuildContext context) => ThemeData(
-        primaryColor: tatBlue,
-        primaryColorLight: tatBlue,
-        primaryColorDark: tatDarkBlue,
+        useMaterial3: true,
+        colorSchemeSeed: tatBlue,
         fontFamily: tatFontFamily,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: tatBlue,
