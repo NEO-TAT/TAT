@@ -14,10 +14,14 @@ import 'package:tat/utils/debug_log.dart';
 /// The storage of TAT app provides efficient read/write performance and can encrypt data.
 @immutable
 class TATStorage implements LocalStorage {
-  factory TATStorage({
-    required FlutterSecureStorage secureStorage,
-  }) {
-    if (!_instance._isInitialized) _instance.secureStorage = secureStorage;
+  factory TATStorage() {
+    if (!_instance._isInitialized) {
+      const secureStorage = FlutterSecureStorage(
+        aOptions: AndroidOptions(encryptedSharedPreferences: true),
+        iOptions: IOSOptions(accessibility: IOSAccessibility.unlocked_this_device),
+      );
+      _instance.secureStorage = secureStorage;
+    }
     return _instance;
   }
 
@@ -142,6 +146,9 @@ class TATStorage implements LocalStorage {
     _log('key: $key', areaName: 'removeData');
     return _encryptedDataKeys.contains(key) ? _removeSecureData(key) : _removeData<T>(key);
   }
+
+  @override
+  Future<void> dispose() => _boxes.dispose();
 }
 
 @immutable
@@ -186,6 +193,25 @@ class _StorageBoxes {
       default:
         throw Exception('not support the box type: $T');
     }
+  }
+
+  Future<void> _doAsyncOperationsToAllBoxes(Future<void> Function(Box box) operation) async {
+    final allBoxes = [_intBox, _doubleBox, _stringBox, _boolBox, _runesBox, _symbolBox];
+    for (final box in allBoxes) {
+      await operation(box);
+    }
+  }
+
+  Future<void> _updateAllToDisk() => _doAsyncOperationsToAllBoxes((box) => box.flush());
+
+  Future<void> _compactAll() => _doAsyncOperationsToAllBoxes((box) => box.compact());
+
+  Future<void> _closeAll() => _doAsyncOperationsToAllBoxes((box) => box.close());
+
+  Future<void> dispose() async {
+    await _updateAllToDisk();
+    await _compactAll();
+    await _closeAll();
   }
 }
 

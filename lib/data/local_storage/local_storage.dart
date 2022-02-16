@@ -52,4 +52,7 @@ abstract class LocalStorage {
   /// indicating whether the data of [key] and [key] has been successfully removed,
   /// if the [key] is not existed in the storage, `false` will be returned.
   Future<bool> removeData<T extends Object>({required String key});
+
+  /// Flush all in-memory changes into disk, and safely close all storage connections.
+  Future<void> dispose();
 }
