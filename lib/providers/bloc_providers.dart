@@ -22,35 +22,35 @@ final _blockedCookieNamePatterns = [
   RegExp('BIGipServer'),
 ];
 
-final _httpClientCookieJarProvider = FutureProvider(
-  (ref) async => PersistCookieJar(
-    storage: await ref.watch(tatCookieStorageProvider.future),
+final _httpClientCookieJarProvider = Provider(
+  (ref) => PersistCookieJar(
+    storage: ref.watch(tatCookieStorageProvider),
   ),
 );
 
-final _httpClientInterceptorsProvider = FutureProvider(
-  (ref) async => [
+final _httpClientInterceptorsProvider = Provider(
+  (ref) => [
     LogInterceptor(request: false, requestHeader: false, responseHeader: false),
     ResponseCookieFilter(blockedCookieNamePatterns: _blockedCookieNamePatterns),
-    CookieManager(await ref.watch(_httpClientCookieJarProvider.future)),
+    CookieManager(ref.watch(_httpClientCookieJarProvider)),
   ],
 );
 
-final _schoolApiServiceProvider = FutureProvider(
-  (ref) async => SchoolApiService(interceptors: await ref.watch(_httpClientInterceptorsProvider.future)),
+final _schoolApiServiceProvider = Provider(
+  (ref) => SchoolApiService(interceptors: ref.watch(_httpClientInterceptorsProvider)),
 );
 
-final _simpleLoginRepositoryProvider = FutureProvider(
-  (ref) async => SimpleLoginRepository(apiService: await ref.watch(_schoolApiServiceProvider.future)),
+final _simpleLoginRepositoryProvider = Provider(
+  (ref) => SimpleLoginRepository(apiService: ref.watch(_schoolApiServiceProvider)),
 );
 
-final _simpleLoginUseCaseProvider = FutureProvider(
-  (ref) async => SimpleLoginUseCase(await ref.watch(_simpleLoginRepositoryProvider.future)),
+final _simpleLoginUseCaseProvider = Provider(
+  (ref) => SimpleLoginUseCase(ref.watch(_simpleLoginRepositoryProvider)),
 );
 
-final authBlocProvider = FutureProvider(
-  (ref) async => AuthBloc(
-    storage: await ref.watch(storageManagerProvider.future),
-    simpleLoginUseCase: await ref.watch(_simpleLoginUseCaseProvider.future),
+final authBlocProvider = Provider(
+  (ref) => AuthBloc(
+    storage: ref.watch(storageManagerProvider),
+    simpleLoginUseCase: ref.watch(_simpleLoginUseCaseProvider),
   ),
 );
