@@ -56,7 +56,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   Completer? loginCompleter;
 
   Future<String?>? _handleLoginCallBack(LoginData loginData) async {
-    final authBloc = await ref.watch(authBlocProvider.future);
+    final authBloc = ref.watch(authBlocProvider);
     final credential = widget._generateCredentialFrom(loginData);
 
     loginCompleter = Completer();
@@ -77,7 +77,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     _log('on initState', areaName: (_LoginPageState).toString());
 
     WidgetsBinding.instance?.addPostFrameCallback((_) async {
-      final authBloc = await ref.watch(authBlocProvider.future);
+      final authBloc = ref.watch(authBlocProvider);
       authBlocStreamSubscription = authBloc.stream.listen((state) {
         _log('receive authBloc stream data: $state', areaName: 'initState');
         if (state is AuthInitialLoginSuccess) {
