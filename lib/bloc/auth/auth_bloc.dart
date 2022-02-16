@@ -9,7 +9,8 @@ import 'package:equatable/equatable.dart';
 import 'package:tat_core/tat_core.dart';
 
 // 🌎 Project imports:
-import 'package:tat/data/storage_manager.dart';
+import 'package:tat/data/local_storage/local_storage.dart';
+import 'package:tat/data/local_storage/tat_storage_keys.dart';
 import 'package:tat/utils/debug_log.dart';
 
 part 'auth_event.dart';
@@ -18,7 +19,7 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
-    required StorageManager storage,
+    required LocalStorage storage,
     required SimpleLoginUseCase simpleLoginUseCase,
   })  : _storage = storage,
         _simpleLoginUseCase = simpleLoginUseCase,
@@ -45,7 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
   }
 
-  final StorageManager _storage;
+  final LocalStorage _storage;
   final SimpleLoginUseCase _simpleLoginUseCase;
 
   @override
@@ -58,8 +59,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _simpleLoginUseCase(credential: credential);
 
   Future<void> _saveCredential(LoginCredential credential) async {
-    await _storage.setData(key: StorageKeys.keyUserId, value: credential.userId);
-    await _storage.setData(key: StorageKeys.keyPassword, value: credential.password, isSecure: true);
+    await _storage.setData(key: TATStorageKeys.keyUserId, value: credential.userId);
+    await _storage.setData(key: TATStorageKeys.keyPassword, value: credential.password, isSecure: true);
   }
 }
 
