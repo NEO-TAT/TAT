@@ -11,6 +11,7 @@ class Strings {
 
   // global names
   static const appBarTitle = 'TAT - 北科生活 APP';
+  static const appEncryptionKey = 'TATStorageEncryptionKey';
 
   // main page
   static const mainPageCourseTableTabName = '課表';
