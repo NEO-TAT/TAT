@@ -11,6 +11,8 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // 🌎 Project imports:
+import 'package:tat/data/local_storage/tat_storage.dart';
+import 'package:tat/providers/storage_providers.dart';
 import 'package:tat/router/tat_router.dart';
 import 'package:tat/strings.dart';
 import 'package:tat/themes.dart';
@@ -25,7 +27,7 @@ Future<void> runTAT() async {
       detachedCallBack: _handleAppDetached,
     ),
   );
-
+  await TATStorage(secureStorage: secureStorage).init();
   _beginRunTAT();
 }
 
