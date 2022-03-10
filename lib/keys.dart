@@ -2,5 +2,5 @@
 import 'package:flutter/widgets.dart';
 
 class TATKeyProvider {
-  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final navigatorKey = GlobalKey<NavigatorState>();
 }

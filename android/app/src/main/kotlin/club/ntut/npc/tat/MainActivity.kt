@@ -1,4 +1,4 @@
-package club.ntut.npc.tat.tat
+package club.ntut.npc.tat
 
 import io.flutter.embedding.android.FlutterActivity
 
