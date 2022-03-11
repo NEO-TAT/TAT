@@ -62,8 +62,9 @@ class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClient
         onPageChanged: _currentIndex.changeIndex,
       );
 
-  List<BottomNavigationBarItem> get _bottomBarItems => widget._tabList.map((tabInfo) {
-        return BottomNavigationBarItem(
+  List<BottomNavigationBarItem> get _bottomBarItems => widget._tabList
+      .map(
+        (tabInfo) => BottomNavigationBarItem(
           label: tabInfo.label,
           icon: Icon(
             tabInfo.iconSelector.original,
@@ -71,8 +72,9 @@ class _TATMainPageState extends State<TATMainPage> with AutomaticKeepAliveClient
           activeIcon: Icon(
             tabInfo.iconSelector.selected,
           ),
-        );
-      }).toList();
+        ),
+      )
+      .toList();
 
   Widget? get _tatButtonBar => BlocBuilder<_CurrentMainPageTabIndex, int>(
         bloc: _currentIndex,
