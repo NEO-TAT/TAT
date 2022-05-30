@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tat/strings.dart';
 
 class GradesPage extends StatelessWidget {
-  const GradesPage({Key? key}) : super(key: key);
+  const GradesPage({super.key});
 
   PreferredSizeWidget? get _appBar => AppBar(
         title: const Text(Strings.mainPageGradesTabName),

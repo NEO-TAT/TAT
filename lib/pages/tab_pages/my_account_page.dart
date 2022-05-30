@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tat/strings.dart';
 
 class MyAccountPage extends StatelessWidget {
-  const MyAccountPage({Key? key}) : super(key: key);
+  const MyAccountPage({super.key});
 
   PreferredSizeWidget? get _appBar => AppBar(
         title: const Text(Strings.mainPageMyAccountTabName),

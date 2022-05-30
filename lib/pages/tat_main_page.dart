@@ -15,7 +15,7 @@ import 'package:tat/strings.dart';
 import 'package:tat/utils/debug_log.dart';
 
 class TATMainPage extends StatefulWidget {
-  const TATMainPage({Key? key}) : super(key: key);
+  const TATMainPage({super.key});
 
   static const routeName = 'main_page';
 
