@@ -23,9 +23,7 @@ import 'package:tat/utils/debug_log.dart';
 typedef LoginSuccessAction = void Function();
 
 class LoginPage extends ConsumerStatefulWidget {
-  const LoginPage({Key? key, LoginSuccessAction? loginSuccessAction})
-      : _loginSuccessAction = loginSuccessAction,
-        super(key: key);
+  const LoginPage({super.key, LoginSuccessAction? loginSuccessAction}) : _loginSuccessAction = loginSuccessAction;
 
   static const routeName = 'login_page';
 
@@ -76,7 +74,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     super.initState();
     _log('on initState', areaName: (_LoginPageState).toString());
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       final authBloc = ref.watch(authBlocProvider);
       authBlocStreamSubscription = authBloc.stream.listen((state) {
         _log('receive authBloc stream data: $state', areaName: 'initState');

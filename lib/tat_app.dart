@@ -21,7 +21,7 @@ import 'package:tat/utils/debug_log.dart';
 Future<void> runTAT() async {
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Hive.initFlutter();
-  WidgetsBinding.instance?.addObserver(
+  WidgetsBinding.instance.addObserver(
     _TATLifeCycleEventHandler(
       detachedCallBack: _handleAppDetached,
     ),
@@ -71,7 +71,7 @@ class _TATLifeCycleEventHandler extends WidgetsBindingObserver {
 }
 
 class _TAT extends StatelessWidget {
-  const _TAT({Key? key}) : super(key: key);
+  const _TAT();
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(

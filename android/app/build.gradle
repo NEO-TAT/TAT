@@ -40,7 +40,7 @@ android {
 
     defaultConfig {
         applicationId "club.ntut.npc.tat"
-        minSdkVersion 23
+        minSdkVersion 29
         targetSdkVersion 32
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -70,5 +70,5 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.android.material:material:1.7.0-alpha01'
+    implementation 'com.google.android.material:material:1.7.0-alpha02'
 }

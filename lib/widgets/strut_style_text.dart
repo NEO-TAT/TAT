@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 class StrutStyleText extends StatelessWidget {
   const StrutStyleText(
     this._text, {
-    Key? key,
+    super.key,
     TextStyle? style,
     TextAlign? textAlign,
     TextOverflow? overflow,
@@ -14,8 +14,7 @@ class StrutStyleText extends StatelessWidget {
         _textAlign = textAlign,
         _overflow = overflow,
         _softWrap = softWrap,
-        _maxLines = maxLines,
-        super(key: key);
+        _maxLines = maxLines;
 
   final String _text;
   final TextStyle? _style;

@@ -9,7 +9,7 @@ import 'package:tat/router/navigations.dart';
 import 'package:tat/strings.dart';
 
 class DebugBoard extends ConsumerWidget {
-  const DebugBoard({Key? key}) : super(key: key);
+  const DebugBoard({super.key});
 
   PreferredSizeWidget get _appBar => AppBar(
         title: const Text(Strings.mainPageDebugBoardTabName),

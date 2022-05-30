@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:tat/strings.dart';
 
 class CalendarPage extends StatelessWidget {
-  const CalendarPage({Key? key}) : super(key: key);
+  const CalendarPage({super.key});
 
   PreferredSizeWidget? get _appBar => AppBar(
         title: const Text(Strings.mainPageCalendarTabName),
