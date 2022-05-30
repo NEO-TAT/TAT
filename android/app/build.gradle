@@ -40,7 +40,7 @@ android {
 
     defaultConfig {
         applicationId "club.ntut.npc.tat"
-        minSdkVersion 23
+        minSdkVersion 29
         targetSdkVersion 32
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
