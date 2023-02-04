@@ -37,8 +37,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         return;
       }
 
-      _log('login failed, reason: ${loginResult.resultType.name}', areaName: (AuthInitialLoginCalled).toString());
-      emit(AuthInitialLoginFailure(loginResult.resultType));
+      _log('login failed, reason: ${loginResult.accountStatus.name}', areaName: (AuthInitialLoginCalled).toString());
+      emit(AuthInitialLoginFailure(loginResult.accountStatus));
     });
 
     on<AuthLogoutCalled>((event, emit) {
@@ -66,7 +66,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 void _log(Object object, {required String areaName, Object? error, StackTrace? stackTrace}) => debugLog(
       object,
-      name: '${(AuthBloc).toString()} $areaName',
+      name: '$AuthBloc $areaName',
       error: error,
       stackTrace: stackTrace,
     );

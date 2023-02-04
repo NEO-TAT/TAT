@@ -51,7 +51,7 @@ class LoginPage extends ConsumerStatefulWidget {
 class _LoginPageState extends ConsumerState<LoginPage> {
   StreamSubscription<AuthState>? authBlocStreamSubscription;
   String? loginFailedMsg;
-  Completer? loginCompleter;
+  Completer<dynamic>? loginCompleter;
 
   Future<String?>? _handleLoginCallBack(LoginData loginData) async {
     final authBloc = ref.watch(authBlocProvider);
@@ -61,7 +61,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     loginFailedMsg = Strings.unknownLoginFailedMsg;
 
     authBloc.add(AuthInitialLoginCalled(credential));
-    _log('authBloc event added: ${(AuthInitialLoginCalled).toString()}', areaName: '_handleLoginCallBack');
+    _log('authBloc event added: $AuthInitialLoginCalled', areaName: '_handleLoginCallBack');
 
     assert(loginCompleter != null, 'loginCompleter should not be null when _handleLoginCallBack called.');
 
@@ -83,7 +83,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           widget._loginSuccessAction?.call();
           loginCompleter?.complete();
         } else if (state is AuthInitialLoginFailure) {
-          loginFailedMsg = Strings.getLoginFailedMsgFrom(state.errorType);
+          loginFailedMsg = Strings.getLoginFailedMsgFrom(state.accountStatus);
           loginCompleter?.complete();
         }
       });
