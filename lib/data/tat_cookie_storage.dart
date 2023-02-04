@@ -8,7 +8,8 @@ class TATCookieStorage implements Storage {
   TATCookieStorage({required LocalStorage storage}) : _storage = storage;
 
   final LocalStorage _storage;
-  bool? _persistSession, _ignoreExpires;
+  bool? _persistSession;
+  bool? _ignoreExpires;
 
   String get _keyNamePrefix {
     assert(_persistSession != null, '_persistSession must not be null');

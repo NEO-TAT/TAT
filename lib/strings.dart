@@ -36,14 +36,14 @@ class Strings {
       'The phone number has not been set or verified, please fix it and try again';
   static const accountLockedLoginFailedMsg = 'Account is locked, please try again after unlocking';
 
-  static String getLoginFailedMsgFrom(SimpleLoginResultType loginResultType) {
-    if (loginResultType == SimpleLoginResultType.wrongCredential) return wrongCredentialLoginFailedMsg;
-    if (loginResultType == SimpleLoginResultType.needsResetPassword) return needsResetPasswordLoginFailedMsg;
-    if (loginResultType == SimpleLoginResultType.needsVerifyMobile) return needsVerifyMobileLoginFailedMsg;
-    if (loginResultType == SimpleLoginResultType.locked) return accountLockedLoginFailedMsg;
+  static String getLoginFailedMsgFrom(AccountStatus loginResultType) {
+    if (loginResultType == AccountStatus.receivedInvalidCredential) return wrongCredentialLoginFailedMsg;
+    if (loginResultType == AccountStatus.needsResetPassword) return needsResetPasswordLoginFailedMsg;
+    if (loginResultType == AccountStatus.needsVerifyMobile) return needsVerifyMobileLoginFailedMsg;
+    if (loginResultType == AccountStatus.locked) return accountLockedLoginFailedMsg;
 
     // This msg will not appeared on screen if `loginResultType` is `SimpleLoginResultType.success`.
-    if (loginResultType == SimpleLoginResultType.success) return '';
+    if (loginResultType == AccountStatus.normal) return '';
     return unknownLoginFailedMsg;
   }
 }

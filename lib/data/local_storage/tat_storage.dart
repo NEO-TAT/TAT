@@ -18,7 +18,7 @@ class TATStorage implements LocalStorage {
     if (!_instance._isInitialized) {
       const secureStorage = FlutterSecureStorage(
         aOptions: AndroidOptions(encryptedSharedPreferences: true),
-        iOptions: IOSOptions(accessibility: IOSAccessibility.unlocked_this_device),
+        iOptions: IOSOptions(accessibility: KeychainAccessibility.unlocked_this_device),
       );
       _instance.secureStorage = secureStorage;
     }
@@ -195,7 +195,7 @@ class _StorageBoxes {
     }
   }
 
-  Future<void> _doAsyncOperationsToAllBoxes(Future<void> Function(Box box) operation) async {
+  Future<void> _doAsyncOperationsToAllBoxes(Future<void> Function(Box<dynamic> box) operation) async {
     final allBoxes = [_intBox, _doubleBox, _stringBox, _boolBox, _runesBox, _symbolBox];
     for (final box in allBoxes) {
       await operation(box);

@@ -10,7 +10,7 @@ class RouteNavigationObserver extends NavigatorObserver {
   /// A Route list for recording the navigation history.
   final List<Route<dynamic>> _routeHistory = [];
 
-  Route get currentRoute => _routeHistory.last;
+  Route<dynamic> get currentRoute => _routeHistory.last;
 
   String get _navigationHistoryString => '\n[${_routeHistory.map((route) => route.settings.name).join(' => ')}]';
 
@@ -18,7 +18,8 @@ class RouteNavigationObserver extends NavigatorObserver {
   bool contains(String routeName) => _routeHistory.map((route) => route.settings.name).contains(routeName);
 
   /// Returns routes with [routeName] if found; empty list otherwise.
-  List<Route> getRoutes(String routeName) => _routeHistory.where((route) => route.settings.name == routeName).toList();
+  List<Route<dynamic>> getRoutes(String routeName) =>
+      _routeHistory.where((route) => route.settings.name == routeName).toList();
 
   void _pop() {
     if (_routeHistory.isNotEmpty) {
@@ -74,6 +75,6 @@ class RouteNavigationObserver extends NavigatorObserver {
         'route: ${route?.settings.name}, '
         'previousRoute: ${previousRoute?.settings.name}, '
         'navHistory: $_navigationHistoryString',
-        name: '${(RouteNavigationObserver).toString()} $areaName',
+        name: '$RouteNavigationObserver $areaName',
       );
 }

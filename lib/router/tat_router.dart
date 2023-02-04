@@ -10,7 +10,7 @@ import 'package:tat/pages/tat_main_page.dart';
 import 'package:tat/router/observer.dart';
 
 final _mainPageRoute = GoRoute(
-  path: '/${TATMainPage.routeName}',
+  path: '/',
   name: TATMainPage.routeName,
   builder: (_, state) => TATMainPage(
     key: state.pageKey,
